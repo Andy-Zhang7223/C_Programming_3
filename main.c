@@ -32,3 +32,5 @@ int main(void) {
     GCF_finder();
     return 0;
 }
+
+test
