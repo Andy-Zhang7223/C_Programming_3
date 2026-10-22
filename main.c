@@ -2,33 +2,34 @@
 //
 #include <stdio.h>
 
-int GCF_finder() {
-    int x = 0;
-    int y = 0;
+int Fraction_Simplifier() {
+    char fraction[6] = "";
+    int numerator = 0;
+    int denominator = 0;
     int smaller_integer = 0;
     int GCF = 0;
-    printf("Enter your first number: \n");
-    scanf("%d", &x);
-    printf("Enter your second number: \n");
-    scanf("%d", &y);
-    if (x<y) {
-        smaller_integer = x;
+    printf("Enter a fraction: ");
+    fgets(fraction, sizeof(fraction), stdin);
+    numerator = (fraction[0] - '0') * 10 + (fraction[1] - '0');
+    denominator = (fraction[3] - '0') * 10 + (fraction[4] - '0');
+    if (numerator > denominator) {
+        smaller_integer = denominator;
     }
     else {
-        smaller_integer = y;
+        smaller_integer = numerator;
     }
     for (int i = 1; i <= smaller_integer; i++) {
-        if (x%i == 0 && y%i == 0) {
+        if (numerator % i == 0 && denominator % i == 0) {
             GCF = i;
         }
-        else {
-            continue;
-        }
     }
-    printf("GCF is %d\n", GCF);
+    numerator = numerator / GCF;
+    //Breaks here
+    denominator = denominator / GCF;
+    printf("Simplified fraction: %d/%d \n", numerator, denominator);
 }
 
 int main(void) {
-    GCF_finder();
+    Fraction_Simplifier();
     return 0;
 }
